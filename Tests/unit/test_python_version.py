@@ -2,14 +2,14 @@ import sys
 import unittest
 
 
-MIN_VERSION = (3, 7)
+MIN_VERSION = (3, 8)
 
 
 class TestPythonVersion(unittest.TestCase):
     """Fail fast if running on an unsupported Python version.
 
     This encodes the minimum Python version expected for ControlCamera,
-    matching the README badge (3.7+).
+    matching the README badge (3.8+).
     """
 
     def test_python_version_supported(self):
