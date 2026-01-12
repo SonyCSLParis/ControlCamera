@@ -8,7 +8,8 @@ install_requires = [
     'scikit-image',
     'pandas',
     'numpy',
-    'logger'
+    'logger',
+    'ipdb'
 ]
 
 

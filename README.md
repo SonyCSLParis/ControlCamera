@@ -1,5 +1,28 @@
 # ControlCamera
 
+
+
+[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
+[![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo-orange.svg)](https://zenodo.org)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
+[![Arduino Compatible](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=Arduino&logoColor=white)](https://www.arduino.cc/)
+
+---
+
+## Module Information
+
+**Intended Audience**: Researchers, engineers, and makers working on laboratory automation, microscopy, robotics, or hardware-software interfacing. This module is designed for users who need robust serial communication between Python and Arduino for instrument control, data acquisition, or interactive hardware systems.
+
+**Related Modules**:
+- [ControlMotors](../ControlMotors/) - Motor and stage control
+- [ControlLight](../ControlLight/) - LED and laser control
+- [ControlSerial](../ControlSerial/) - Python serial interface
+- [Main Project Documentation](https://alienor134.github.io/UC2_Fluorescence_microscope/docs/) - Complete microscope setup
+
+---
+
+
 This repository explains how to control a camera with Python provided a .dll library exists to control it with Micro-Manager. 
 It uses the library [pymmcore-plus](https://github.com/pymmcore-plus/pymmcore-plus).
 
@@ -56,9 +79,9 @@ camera.save_video(SAVE_PATH)
 ## Install the library
 
 ```
-git clone XXXXXXXX
+git clone https://github.com/SonyCSLParis/ControlCamera
 cd ControlCamera
-python setup.py develop
+pip install -e .
 ```
 
 
@@ -123,7 +146,7 @@ Launch the code by typing in the command line:
 
 
 
-* You might encounter trouble if pymmcore version doesn't match Micro-Manager version. To check Micro-Manager version: **Help>About Micro-Manager**
+* You might encounter trouble if pymmcore and pymmcore-plus version doesn't match Micro-Manager version. To check Micro-Manager version: **Help>About Micro-Manager**
   
 <p align="center">
 <a> <img src="./Images/2023-02-06-09-43-49.png" width="300"></a>
@@ -143,9 +166,13 @@ In the command line type:
 
 Here it would be pymmcore==10.3.0.71.0
 
+If an error pops warning about an incompatibility with pymmcore-plus, fetch [here](https://github.com/pymmcore-plus/pymmcore-plus/releases?page=1) the version released with a date close to the release of the right pymmcore version. 
+
 Now test again: 
 
 ```python Camera.py```
+
+
 
 ### Documentation
 You can import the class Camera.py for modular usage of the library.

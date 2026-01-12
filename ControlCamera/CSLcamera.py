@@ -77,8 +77,8 @@ class ControlCamera(threading.Thread):
       """
       threading.Thread.__init__(self)
       try:
-        f = open(config_file)
-        config = json.load(f)
+        with open(config_file, "r") as f:
+          config = json.load(f)
       except FileNotFoundError:
           logger.error(f"Config file '{config_file}' not found.")
           raise
@@ -151,7 +151,6 @@ class ControlCamera(threading.Thread):
         Returns:
             The current value of the camera parameter.
         """
-    def get_param(self, key):
         try:
             return self.mmc.getProperty(self.name, key)
         except Exception as e:
@@ -200,11 +199,13 @@ class ControlCamera(threading.Thread):
             numpy.ndarray: The captured image.
         """
         try:
-            self.mmc.snapImage()
-            self.frame = self.mmc.getImage()
-            self.image = np.array(Image.fromarray(np.uint8(self.frame)))
+          self.mmc.snapImage()
+          self.frame = self.mmc.getImage()
+          self.image = np.array(Image.fromarray(np.uint8(self.frame)))
+          return self.image
         except Exception as e:
-            logger.error(f"Failed to snap image: {e}")
+          logger.error(f"Failed to snap image: {e}")
+          return None
 
     def snap_video(self, N_im): 
       """
@@ -245,6 +246,7 @@ class ControlCamera(threading.Thread):
       cv2.destroyAllWindows()
       self.mmc.stopSequenceAcquisition()
       self.mmc.reset()
+      return self.video
 
 
     def run(self):
@@ -257,7 +259,7 @@ class ControlCamera(threading.Thread):
         elif self.camera_mode == 'snap_video':
             self.snap_video(self.N_im)
         else:
-            raise ValueError("Invalid mode: {}".format(self.camera.mode))      
+            raise ValueError("Invalid mode: {}".format(self.camera_mode))      
 
 
     def save_video(self, save_folder,  _run=None):
