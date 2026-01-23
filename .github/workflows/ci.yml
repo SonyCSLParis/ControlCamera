@@ -33,5 +33,6 @@ jobs:
           pip install -e .
 
       - name: Run unit tests (no hardware)
+        working-directory: Tests
         run: |
-          python -m unittest discover -s Tests -p "test_*.py"
+          python -m unittest test_python_version test_camera_params

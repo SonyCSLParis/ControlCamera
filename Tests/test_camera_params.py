@@ -7,7 +7,8 @@ from ControlCamera import ControlCamera
 cc_module = importlib.import_module("ControlCamera.ControlCamera")
 
 
-# MMconfig directory lives alongside Tests/, not inside unit/
+# MMconfig path as used in regular usage; CI will run tests from the
+# Tests directory so relative paths inside the JSON remain valid.
 MMCONFIG_DIR = "MMconfig"
 CONFIG_FILE = MMCONFIG_DIR + "/Daheng.json"
 
