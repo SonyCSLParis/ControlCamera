@@ -109,7 +109,7 @@ class ControlCamera(threading.Thread):
         if key not in ["name", "MMconfig"]:
           try:
             self.mmc.setProperty(self.name, key, config[key])          
-            logger.info(key, self.get_param(key))
+            logger.info("Set config parameter %s=%s", key, self.get_param(key))
           except Exception as e:
             logger.error(f"Failed to update parameter '{key}' with value '{config[key]}': {e}")             
 
@@ -119,7 +119,7 @@ class ControlCamera(threading.Thread):
       for key in cam_param:
           try:
             self.mmc.setProperty(self.name, key, cam_param[key])
-            logger.info(key, self.get_param(key))
+            logger.info("Set local parameter %s=%s", key, self.get_param(key))
 
           except Exception as e:
             logger.error(f"Failed to update parameter '{key}' with value '{cam_param[key]}': {e}")             
@@ -136,7 +136,7 @@ class ControlCamera(threading.Thread):
         """
         try:
             self.mmc.setProperty(self.name, key, val)
-            logger.info(key, self.get_param(key))
+            logger.info("Updated parameter %s=%s", key, self.get_param(key))
 
         except Exception as e:
             logger.error(f"Failed to update parameter '{key}' with value '{val}': {e}")
@@ -161,27 +161,42 @@ class ControlCamera(threading.Thread):
     def continuous_stream(self, transform=None):
       """
       Perform continuous streaming of the camera frames and display them in a window.
+
+      The window is shown at a reduced size so that large sensor
+      images still fit on screen. Press 'q' to close.
       """
-      cv2.namedWindow('live',cv2.WINDOW_AUTOSIZE)
+      cv2.namedWindow('live', cv2.WINDOW_NORMAL)
       self.mmc.startContinuousSequenceAcquisition(1)
       while True:
         if self.mmc.getRemainingImageCount() > 0:
           self.frame = self.mmc.popNextImage()
-          self.image = np.mean(self.frame[:,:,:3], axis =2)
-          #self.image = np.array(Image.fromarray(np.uint8(self.frame)))
-          #self.image[self.image<np.quantile(self.image, 0.99)] = 0
+          # Average RGB channels to get a grayscale image (like original code)
+          self.image = np.mean(self.frame[:, :, :3], axis=2)
+          # self.image = np.array(Image.fromarray(np.uint8(self.frame)))
+          # self.image[self.image<np.quantile(self.image, 0.99)] = 0
+
           if transform is not None:
-                # Apply the transform function here
-                transformed_image = self.image.copy()
-                transformed_image = transform(transformed_image)
-                image = resize(self.image, transformed_image.shape)
-                # Create a combined image by stacking the original and transformed images horizontally
-                combined_image = np.hstack((image, transformed_image))
-                # Display the combined image
-                
-                cv2.imshow('live', cv2.normalize(combined_image, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1))
+            # Apply the transform function here
+            transformed_image = self.image.copy()
+            transformed_image = transform(transformed_image)
+            image = resize(self.image, transformed_image.shape)
+            # Create a combined image by stacking the original and transformed images horizontally
+            combined_image = np.hstack((image, transformed_image))
+            # Display the combined image (downscaled for the screen)
+            disp = cv2.normalize(combined_image, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
           else:
-                cv2.imshow('live', cv2.normalize(self.image, None, 255,0, cv2.NORM_MINMAX, cv2.CV_8UC1))
+            disp = cv2.normalize(self.image, None, 255, 0, cv2.NORM_MINMAX, cv2.CV_8UC1)
+
+          # Downscale display image if it is larger than a typical window
+          max_h, max_w = 600, 800
+          h, w = disp.shape[:2]
+          scale = min(max_h / h, max_w / w, 1.0)
+          if scale < 1.0:
+            new_size = (int(w * scale), int(h * scale))
+            disp = cv2.resize(disp, new_size, interpolation=cv2.INTER_AREA)
+
+          cv2.imshow('live', disp)
+
         if cv2.waitKey(1) & 0xFF == ord('q'):
           break
 
@@ -293,4 +308,3 @@ class ControlCamera(threading.Thread):
           _run.add_artifact(fname, "video.tiff")
           _run.add_artifact(fname, "video_timing.csv")
         return result, timing
-

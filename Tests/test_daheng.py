@@ -6,7 +6,9 @@ import os
 # Define test configuration file and parameters
 
 CAM_PARAMS = {"TriggerMode": "On", #off
-             "TriggerSource": "Line0"} #Software
+             "TriggerSource": "Line0",
+              "SensorHeight":2048,
+                "SensorWidth":2448} #Software
 CONFIG_FILE = "MMconfig/Daheng.json"
 
 # Initialize the camera controller

@@ -1,1 +1,1 @@
-from .CSLcamera import ControlCamera
+from .ControlCamera import ControlCamera

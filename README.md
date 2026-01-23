@@ -5,7 +5,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo-orange.svg)](https://zenodo.org)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
+[![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
 [![Arduino Compatible](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=Arduino&logoColor=white)](https://www.arduino.cc/)
 
 ---
