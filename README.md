@@ -13,7 +13,6 @@
 ## Module Information
 
 **Intended Audience**: Imaging scientists, microscopists, and automation engineers who want to control cameras via Micro-Manager from Python. Ideal for configuring devices, streaming, snapshot and video acquisition using pymmcore-plus with manufacturer drivers (DLLs) through Micro-Manager.
-
 ---
 
 
