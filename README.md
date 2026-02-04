@@ -12,13 +12,7 @@
 
 ## Module Information
 
-**Intended Audience**: Researchers, engineers, and makers working on laboratory automation, microscopy, robotics, or hardware-software interfacing. This module is designed for users who need robust serial communication between Python and Arduino for instrument control, data acquisition, or interactive hardware systems.
-
-**Related Modules**:
-- [ControlMotors](../ControlMotors/) - Motor and stage control
-- [ControlLight](../ControlLight/) - LED and laser control
-- [ControlSerial](../ControlSerial/) - Python serial interface
-- [Main Project Documentation](https://alienor134.github.io/UC2_Fluorescence_microscope/docs/) - Complete microscope setup
+**Intended Audience**: Imaging scientists, microscopists, and automation engineers who want to control cameras via Micro-Manager from Python. Ideal for configuring devices, streaming, snapshot and video acquisition using pymmcore-plus with manufacturer drivers (DLLs) through Micro-Manager.
 
 ---
 
@@ -196,3 +190,73 @@ Methods of ControlCamera class:
 ### License
 
 This project is licensed under the [GNU General Public License v3.0](https://www.tldrlegal.com/license/gnu-general-public-license-v3-gpl-3)
+
+---
+
+## License and Legal Information
+
+### Software License
+
+This software is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+Full license text: [LICENSE](LICENSE)
+
+### Firmware
+
+The firmware is provided by the supplier of the camera and is not necessarily open-source.
+
+### Related Licenses
+
+- **Parent Project** (UC2 Fluorescence Microscope): Hardware under CERN-OHL-S-2.0, Software under GPL-3.0
+- **Documentation**: CC BY-SA 4.0
+
+
+---
+
+## Version Control and Attribution
+
+This project follows **Open Source Hardware Association (OSHWA)** guidelines for version control and attribution.
+
+### Version Control Practice
+
+- **Repository**: Git-based version control with full commit history
+- **Submodule Structure**: Part of the UC2 Fluorescence Microscope parent repository
+- **Versioning**: Semantic versioning (MAJOR.MINOR.PATCH)
+- **Releases**: Tagged releases with automated testing via GitHub Actions
+
+### Attribution Requirements
+
+When using or modifying this software:
+
+1. **Credit the original authors**: Sony Computer Science Laboratories Paris (CSL Paris) and contributors
+2. **Maintain license notices**: Keep GPL-3.0 headers in source files
+3. **Document modifications**: Clearly state any changes made
+4. **Share derivatives**: Derivatives must be released under GPL-3.0 or compatible license
+
+### Contributing
+
+Contributions are tracked through:
+- Git commit history (automatic attribution)
+- Pull requests on GitHub
+- Contributor acknowledgments in release notes
+
+
+## 🔗 Cross-References and Navigation
+
+### Within UC2 Fluorescence Microscope Project
+
+- **Main Repository**: [UC2_Fluorescence_microscope](https://github.com/Alienor134/UC2_Fluorescence_microscope)
+- **Documentation Home**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/
+- **Build Instructions**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/build
+- **Bill of Materials**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/bill_of_materials
+- **Automation Guide**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/automate
+- **Examples**: https://alienor134.github.io/UC2_Fluorescence_microscope/docs/example
+
+### Related Control Modules
+
+| Module | Purpose | Documentation |
+|--------|---------|---------------|
+| [ControlSerial](../ControlSerial/) | Arduino-Python communication | [README](../ControlSerial/README.md) |
+| [ControlLight](../ControlLight/) | Laser and LED control | [README](../ControlLight/README.md) |
+| [ControlMotors](../ControlMotors) | XYZ stage and motor control | [README](../ControlMotors/README.md) |
+| **ControlCamera** | Camera acquisition and control | [README](README.md) (this file) |
