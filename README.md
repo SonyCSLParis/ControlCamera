@@ -6,13 +6,14 @@
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)](LICENSE)
 [![DOI](https://img.shields.io/badge/DOI-pending%20Zenodo-orange.svg)](https://zenodo.org)
 [![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)](https://github.com/Alienor134/UC2_Fluorescence_microscope)
-[![Arduino Compatible](https://img.shields.io/badge/Arduino-Compatible-00979D?logo=Arduino&logoColor=white)](https://www.arduino.cc/)
+[![DOI](https://zenodo.org/badge/716532315.svg)](https://doi.org/10.5281/zenodo.18484161)
+
+
 
 ---
 
-## Module Information
-
 **Intended Audience**: Imaging scientists, microscopists, and automation engineers who want to control cameras via Micro-Manager from Python. Ideal for configuring devices, streaming, snapshot and video acquisition using pymmcore-plus with manufacturer drivers (DLLs) through Micro-Manager.
+
 ---
 
 
@@ -188,7 +189,7 @@ Methods of ControlCamera class:
 
 ### License
 
-This project is licensed under the [BSD 3-Clause License](https://opensource.org/license/bsd-3-clause) inherited from pymmcore-plus repository.
+This project is licensed under the [GNU General Public License v3.0](https://www.tldrlegal.com/license/gnu-general-public-license-v3-gpl-3). It includes code under **BSD 3-Clause License** (pymmcore-plus).
 
 ---
 
